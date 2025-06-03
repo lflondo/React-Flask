@@ -1,7 +1,8 @@
-from flask import Flask
-from flask-cors import CORS
+from flask import Flask #type: ignore
+from flask_cors import CORS #type: ignore
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/')
 def hello_word():
@@ -10,7 +11,19 @@ def hello_word():
 @app.route('/api/users')
 def get_users():
     return {
-        'user': ['Alice', 'Bob', 'Charlie']
+        'user': [
+            {
+                'id': 1,
+                'name':'Alice'
+            }, 
+             {
+                'id': 2,
+                'name':'Bob'
+            },  {
+                'id': 3,
+                'name':'Charlie'
+            }
+        ]
     }
 
 @app.route('/api/fruits')
